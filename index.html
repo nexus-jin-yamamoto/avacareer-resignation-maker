@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>退職理由メーカー｜本音を、前向きな言葉に。</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f4faf4;--green:#1fa860;--leaf:#e2f4e6;--deep:#145c38;--ink:#173226;--mut:#5e7d6b;--sun:#ffd75e}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Zen Kaku Gothic New',sans-serif;background:
+    radial-gradient(760px 420px at 90% -5%,#e8f7ec,transparent),
+    radial-gradient(600px 380px at 0% 40%,#fdf8e3,transparent),var(--bg);color:var(--ink)}
+  header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;max-width:1080px;margin:0 auto}
+  .logo{font-family:'Zen Maru Gothic';font-weight:900;color:var(--deep)}
+  .logo i{font-style:normal;color:var(--green)}
+  .hbtn{background:var(--green);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:10px 20px;border-radius:99px}
+
+  .hero{max-width:720px;margin:0 auto;text-align:center;padding:58px 24px 10px}
+  .badge{display:inline-block;background:var(--leaf);color:var(--deep);font-size:12.5px;font-weight:700;padding:7px 18px;border-radius:99px}
+  h1{font-family:'Zen Maru Gothic';font-size:clamp(30px,5vw,46px);font-weight:900;line-height:1.55;margin:20px 0 14px;color:var(--deep)}
+  h1 b{color:var(--green)}
+  .lead{color:var(--mut);font-size:15px;line-height:2.1}
+
+  .maker{max-width:880px;margin:44px auto 0;padding:0 24px;display:grid;grid-template-columns:1fr auto 1.15fr;gap:20px;align-items:stretch}
+  .in,.out{background:#fff;border-radius:20px;padding:26px;box-shadow:0 16px 44px rgba(20,92,56,.1);border:1px solid #dceede}
+  .cap{font-size:12px;font-weight:900;letter-spacing:.12em;margin-bottom:14px}
+  .in .cap{color:#b0704e}
+  .out .cap{color:var(--green)}
+  .in textarea{width:100%;height:150px;border:1.5px dashed #e0c9ba;border-radius:12px;background:#fdf9f5;padding:14px;font-family:inherit;font-size:14px;line-height:1.9;color:#6b5344;resize:none}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{font-size:12px;font-weight:700;color:#8a6a55;background:#f6ede5;border-radius:99px;padding:7px 13px;cursor:pointer}
+  .arrow{align-self:center;display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;font-size:20px;font-weight:900;box-shadow:0 10px 24px rgba(31,168,96,.35)}
+  .out .txt{background:#f2faf4;border-radius:12px;padding:18px;font-size:14px;line-height:2.05;color:var(--ink)}
+  .out .txt b{background:linear-gradient(transparent 62%,#c9efd6 62%)}
+  .meta{display:flex;gap:14px;margin-top:14px}
+  .m{flex:1;text-align:center;background:var(--leaf);border-radius:12px;padding:10px}
+  .m b{display:block;font-family:'Zen Maru Gothic';font-size:18px;color:var(--deep)}
+  .m span{font-size:10.5px;color:var(--mut);font-weight:700}
+  .make{max-width:880px;margin:26px auto 0;padding:0 24px;text-align:center}
+  .make button{background:var(--green);border:none;color:#fff;font-family:'Zen Maru Gothic';font-weight:900;font-size:16px;padding:17px 46px;border-radius:99px;cursor:pointer;box-shadow:0 14px 30px rgba(31,168,96,.35);transition:.2s}
+  .make button:hover{transform:translateY(-3px)}
+  .make small{display:block;margin-top:12px;color:#9db8a8;font-size:12px}
+
+  .steps{max-width:880px;margin:70px auto 0;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .st{background:#fff;border-radius:16px;padding:22px;border:1px solid #dceede;text-align:center}
+  .st .ic{font-size:26px}
+  .st h3{font-family:'Zen Maru Gothic';font-size:15px;color:var(--deep);margin:10px 0 6px}
+  .st p{font-size:12.5px;color:var(--mut);line-height:1.9}
+
+  .cta{max-width:760px;margin:80px auto 90px;padding:0 24px;text-align:center}
+  .cta-box{background:linear-gradient(135deg,var(--green),#2fc47a);border-radius:26px;padding:52px 36px;color:#fff;position:relative;overflow:hidden}
+  .cta-box::before{content:"🌱";position:absolute;font-size:120px;opacity:.12;right:-10px;bottom:-24px;transform:rotate(-12deg)}
+  .cta h2{font-family:'Zen Maru Gothic';font-size:clamp(22px,3.4vw,29px);font-weight:900;line-height:1.7}
+  .cta p{font-size:14.5px;line-height:2;opacity:.94;margin:14px 0 28px}
+  .cta-btn{display:inline-block;background:var(--sun);color:#5c4708;text-decoration:none;font-weight:900;font-size:16px;padding:18px 44px;border-radius:99px;transition:.2s}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.15)}
+  .cta small{display:block;margin-top:14px;font-size:12px;opacity:.85}
+  footer{text-align:center;padding:26px;color:#9db8a8;font-size:11.5px}
+  @media(max-width:820px){.maker{grid-template-columns:1fr}.arrow{transform:rotate(90deg);margin:0 auto}.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">AVA<i>CAREER</i> <span style="font-family:'Zen Kaku Gothic New';font-weight:500;color:#5e7d6b;font-size:13px">退職理由メーカー</span></div>
+  <a class="hbtn" href="#cta">無料登録</a>
+</header>
+
+<section class="hero">
+  <span class="badge">🌿 面接官に好印象を残す言いかえAI</span>
+  <h1>その退職理由、<br><b>前向きな一歩</b>に言いかえよう。</h1>
+  <p class="lead">本音はそのままでいい。伝え方だけ、変えればいい。<br>AIがあなたの状況に合わせて、面接で印象の良い退職理由を自動作成します。</p>
+</section>
+
+<section class="maker">
+  <div class="in">
+    <div class="cap">BEFORE — 本音を選ぶ or 書く</div>
+    <textarea readonly>上司と合わなくて、正直もう限界。残業も多いし給料も上がらないから辞めたい…。</textarea>
+    <div class="chips"><span class="chip">人間関係</span><span class="chip">残業が多い</span><span class="chip">給与が低い</span><span class="chip">評価に不満</span><span class="chip">社風が合わない</span></div>
+  </div>
+  <div class="arrow">→</div>
+  <div class="out">
+    <div class="cap">AFTER — 面接で使える退職理由</div>
+    <div class="txt">「現職では個人の裁量で完結する業務が中心でしたが、今後は<b>チームで成果を最大化する働き方</b>に挑戦したいと考えるようになりました。<b>成果が正当に評価され、長期的にスキルを磨ける環境</b>で貢献したく、転職を決意しました。」</div>
+    <div class="meta">
+      <div class="m"><b>A</b><span>好印象度</span></div>
+      <div class="m"><b>0件</b><span>ネガティブ表現</span></div>
+      <div class="m"><b>◎</b><span>一貫性チェック</span></div>
+    </div>
+  </div>
+</section>
+<div class="make"><button onclick="location.href='app.html'">自分の退職理由をつくる（無料）</button><small>3パターンまで無料生成・登録不要</small></div>
+
+<section class="steps">
+  <div class="st"><div class="ic">✍️</div><h3>本音を選ぶだけ</h3><p>よくある退職理由からタップで選択。自由入力もOK。</p></div>
+  <div class="st"><div class="ic">✨</div><h3>AIが3パターン生成</h3><p>面接用・書類用・カジュアル面談用を出し分け。</p></div>
+  <div class="st"><div class="ic">🔁</div><h3>深掘り質問にも対応</h3><p>「それはなぜ？」と聞かれた時の返し方までセットで提案。</p></div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="cta-box">
+    <h2>言葉が整ったら、<br>次は「行き先」を見つけよう。</h2>
+    <p>AVACAREERなら、作成した退職理由と矛盾しない求人だけをAIがマッチング。<br>AIアバター面談で、あなたの代わりに企業へ想いを伝えます。</p>
+    <a class="cta-btn" href="/register/">無料登録して次のキャリアを探す</a>
+    <small>登録60秒 / 作った退職理由はプロフィールに自動保存</small>
+  </div>
+</section>
+
+<footer>© NexusAdvisors Inc. — AVACAREER LAB</footer>
+</body>
+</html>

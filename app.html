@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>つくる｜退職理由メーカー</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f4faf4;--green:#1fa860;--leaf:#e2f4e6;--deep:#145c38;--ink:#173226;--mut:#5e7d6b;--sun:#ffd75e}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Zen Kaku Gothic New',sans-serif;background:radial-gradient(760px 420px at 90% -5%,#e8f7ec,transparent),var(--bg);color:var(--ink);min-height:100vh}
+  header{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;max-width:900px;margin:0 auto}
+  .logo{font-family:'Zen Maru Gothic';font-weight:900;color:var(--deep)}
+  .logo a{text-decoration:none;color:inherit}
+  .logo i{font-style:normal;color:var(--green)}
+  header .reg{background:var(--green);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:10px 20px;border-radius:99px}
+  main{max-width:620px;margin:0 auto;padding:40px 24px 90px}
+  h1{font-family:'Zen Maru Gothic';font-size:25px;font-weight:900;color:var(--deep);text-align:center}
+  .sub{text-align:center;color:var(--mut);font-size:13.5px;margin:10px 0 28px;line-height:2}
+  .panel{background:#fff;border-radius:20px;padding:28px 26px;box-shadow:0 16px 44px rgba(20,92,56,.1);border:1px solid #dceede}
+  .cap{font-size:12px;font-weight:900;letter-spacing:.12em;color:var(--deep);margin-bottom:14px}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chip{font-size:13px;font-weight:700;color:#8a6a55;background:#f6ede5;border-radius:99px;padding:10px 16px;cursor:pointer;border:2px solid transparent;transition:.15s}
+  .chip.on{border-color:var(--green);background:var(--leaf);color:var(--deep)}
+  textarea{width:100%;margin-top:16px;height:80px;border:1.5px solid #d9e8dc;border-radius:12px;background:#fbfdfb;padding:13px;font-family:inherit;font-size:14px;line-height:1.9;resize:vertical}
+  textarea:focus{outline:2px solid var(--green)}
+  .make{width:100%;margin-top:16px;background:var(--green);border:none;color:#fff;font-family:'Zen Maru Gothic';font-weight:900;font-size:15.5px;padding:16px;border-radius:99px;cursor:pointer;box-shadow:0 14px 30px rgba(31,168,96,.3)}
+  #loading{display:none;text-align:center;padding:56px 0;color:var(--mut);font-weight:700}
+  .sprout{font-size:40px;animation:grow 1.2s ease infinite alternate}
+  @keyframes grow{from{transform:scale(.85)}to{transform:scale(1.1)}}
+  #result{display:none}
+  .out{background:#fff;border-radius:20px;padding:26px;border:1px solid #dceede;box-shadow:0 16px 44px rgba(20,92,56,.1);margin-bottom:14px}
+  .out h3{font-family:'Zen Maru Gothic';font-size:14px;color:var(--green);margin-bottom:10px}
+  .out p{background:#f2faf4;border-radius:12px;padding:16px;font-size:14px;line-height:2.05}
+  .copy{margin-top:12px;background:var(--leaf);border:none;color:var(--deep);font-weight:900;font-size:12.5px;padding:10px 18px;border-radius:99px;cursor:pointer;font-family:inherit}
+  .cta{background:linear-gradient(135deg,var(--green),#2fc47a);border-radius:22px;padding:32px 26px;color:#fff;text-align:center;margin-top:22px}
+  .cta h2{font-family:'Zen Maru Gothic';font-size:19px;font-weight:900;line-height:1.7}
+  .cta p{font-size:13.5px;line-height:2;opacity:.94;margin:10px 0 20px}
+  .cta a{display:inline-block;background:var(--sun);color:#5c4708;text-decoration:none;font-weight:900;font-size:15px;padding:15px 36px;border-radius:99px}
+  .again{display:block;text-align:center;margin-top:18px;color:var(--mut);font-size:12px;cursor:pointer;text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><a href="/">AVA<i>CAREER</i></a> <span style="font-family:'Zen Kaku Gothic New';font-weight:500;color:#5e7d6b;font-size:13px">退職理由メーカー</span></div>
+  <a class="reg" href="/register/">無料登録</a>
+</header>
+<main>
+  <h1>本音を、前向きな言葉に。</h1>
+  <p class="sub">あてはまる本音を選んでください（複数OK）。<br>AIが面接で印象の良い退職理由に言いかえます。</p>
+
+  <div class="panel" id="form">
+    <div class="cap">BEFORE — 本音を選ぶ</div>
+    <div class="chips" id="chips"></div>
+    <textarea id="free" placeholder="自由入力もOK（例：上司と合わなくて限界…）"></textarea>
+    <button class="make" onclick="make()">前向きに言いかえる</button>
+  </div>
+
+  <div id="loading"><div class="sprout">🌱</div>言葉を育てています…</div>
+
+  <div id="result">
+    <div class="out"><h3>面接で話す用</h3><p id="o1"></p><button class="copy" onclick="cp('o1')">コピー</button></div>
+    <div class="out"><h3>書類・履歴書用（短め）</h3><p id="o2"></p><button class="copy" onclick="cp('o2')">コピー</button></div>
+    <div class="cta">
+      <h2>言葉が整ったら、次は「行き先」。</h2>
+      <p>AVACAREERなら、この退職理由と矛盾しない求人だけをAIがマッチングします。</p>
+      <a href="/register/">無料登録して次のキャリアを探す</a>
+    </div>
+    <span class="again" onclick="location.reload()">選び直してもう一度つくる</span>
+  </div>
+</main>
+<script>
+const R={
+"人間関係":["現職では個人で完結する業務が中心でしたが、今後はチームで協働しながら成果を最大化する働き方に挑戦したいと考えるようになりました。","チームでの協働を通じて成果を出せる環境で力を発揮したいと考え、転職を決意しました。"],
+"残業が多い":["業務効率を高めながら成果を出すことを大切にしており、生産性を重視する環境で長期的に貢献したいと考えるようになりました。","生産性高く働き、長期的に貢献できる環境を求めて転職を決意しました。"],
+"給与が低い":["成果が正当に評価される環境で、より高い目標に挑戦し続けたいと考えるようになりました。","成果と評価が連動する環境で挑戦を続けたいと考え、転職を決意しました。"],
+"評価に不満":["自身の貢献を客観的な指標で示し、それに応じてステップアップできる環境を求めています。","明確な評価基準のもとで成長していきたいと考え、転職を決意しました。"],
+"社風が合わない":["よりスピード感を持って挑戦できる環境で、自分の強みを最大限に活かしたいと考えるようになりました。","挑戦を後押しする社風の中で強みを活かしたいと考え、転職を決意しました。"],
+"成長できない":["現職で基礎を固めることができた今、より裁量の大きい環境で次の成長ステージに進みたいと考えています。","さらに裁量の大きい環境で成長を続けたいと考え、転職を決意しました。"]};
+const chips=document.getElementById('chips');
+Object.keys(R).forEach(k=>{const s=document.createElement('span');s.className='chip';s.textContent=k;s.onclick=()=>s.classList.toggle('on');chips.appendChild(s)});
+function make(){
+  const sel=[...document.querySelectorAll('.chip.on')].map(c=>c.textContent);
+  if(!sel.length && !document.getElementById('free').value.trim()){alert('本音をひとつ選ぶか、入力してください');return}
+  const keys=sel.length?sel:["成長できない"];
+  document.getElementById('form').style.display='none';
+  document.getElementById('loading').style.display='block';
+  setTimeout(()=>{
+    document.getElementById('loading').style.display='none';
+    document.getElementById('result').style.display='block';
+    const long=keys.map(k=>R[k][0]).join('また、');
+    document.getElementById('o1').textContent="「"+long+"貴社であればその想いを実現できると考え、転職を決意いたしました。」";
+    document.getElementById('o2').textContent=R[keys[0]][1];
+  },1600);
+}
+function cp(id){navigator.clipboard.writeText(document.getElementById(id).textContent);}
+</script>
+</body>
+</html>
